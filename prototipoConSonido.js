@@ -1,3 +1,10 @@
+/*
+ Entrega TP1
+ Julia Ferrari, Michelle González,
+ Micaela Floch, Lucas Gordillo,
+ Pilar Fernández, Martina Furh
+ Comisión Matías.
+ */
 let estadoActual = 1;
 let trazos = [];
 let imagenes = [];
@@ -82,10 +89,10 @@ function preload() {
 
 function setup() {
   createCanvas(500, 600);
-  audioContext = getAudioContext(); //inicia el motor de audio
-  mic = new p5.AudioIn(); //Esto comunica con la entrada del micrófono.
-  mic.start(startPitch); //Esto inicializa el flujo del audio, y le trasmito el analisis de frecuencia (pitch) al micrófono
-  gestorAmp = new GestorSenial (amp_min, amp_max) //inicializo el gestor
+  audioContext = getAudioContext(); 
+  mic = new p5.AudioIn(); 
+  mic.start(startPitch); 
+  gestorAmp = new GestorSenial (amp_min, amp_max) 
   gestorAmp. f = amortiguacion;
   gestorPitch = new GestorSenial(frec_min, frec_max);
   userStartAudio();
@@ -108,9 +115,8 @@ class Trazo {
   moverIzquierda() {
     this.x -= velocidadEstado1;
     
-    // Si el trazo se fue completamente por la izquierda
+  
     if (this.x < -this.ancho) {
-      // Reposicionarlo al final de su fila
       let filaY = this.y;
       let desplazamientoX = (int(this.y / 35) % 2 === 1) ? this.ancho / 2 : 0;
       // Cantidad total de columnas generadas (debe coincidir con generarEstado1)
@@ -246,7 +252,6 @@ function draw() {
         if (trazos[i].x > trazos[i].destino) trazos[i].x = trazos[i].destino;
       }
 
-      // Opacidad según posición en fila
       let filaIndex = int(trazos[i].y / 28);
       let filaTrazos = trazos.filter(t => int(t.y / 28) === filaIndex);
       let indexEnFila = filaTrazos.indexOf(trazos[i]);
@@ -292,7 +297,7 @@ function draw() {
 //-------- PITCH DETECTION ---------
 
 function startPitch() {
-  pitch = ml5.pitchDetection(pitchModel, audioContext , mic.stream, modelLoaded); // inicializa el modelo entrenado
+  pitch = ml5.pitchDetection(pitchModel, audioContext , mic.stream, modelLoaded); 
 }
 
 function modelLoaded() {
@@ -358,8 +363,8 @@ function generarEstado2() {
   let maxColumnas = 5;
   let espacioX = 70;
 
-  let modoDireccion = random([0, 1, 2]); // ya lo tenías
-  let modoColor = random([1, 2, 3]);     // NUEVO: modo color
+  let modoDireccion = random([0, 1, 2]); 
+  let modoColor = random([1, 2, 3]);     
 
   for (let fila = 0; fila < filas; fila++) {
     let cantidad = int(random(2, maxColumnas + 1));
@@ -372,8 +377,7 @@ function generarEstado2() {
       direccionFila = modoDireccion;
     }
 
-    // Para el color:
-    // Si modoColor es 1, solo azul; 2 solo naranja; 3 mezcla
+
     let arreglosPosibles;
     if (modoColor === 1) {
       arreglosPosibles = [imagenes];
@@ -395,20 +399,20 @@ function generarEstado2() {
         xInicial = -random(50, 150);
       }
 
-      // Elegir img según modoColor
+
       let arregloElegidoParaTrazo = random(arreglosPosibles);
       let img;
         if (direccionFila === 0) {
-          // Viene desde la derecha → usar versión normal
+
           img = random(arregloElegidoParaTrazo);
         } else {
-          // Viene desde la izquierda → usar imagen espejada si existe
+
           if (arregloElegidoParaTrazo === imagenes) {
             img = random(imagenesinv);
           } else if (arregloElegidoParaTrazo === imagenesRojo) {
             img = random(imagenesRojoinv);
           } else {
-            img = random(arregloElegidoParaTrazo); // fallback por si no hay espejo
+            img = random(arregloElegidoParaTrazo);
           }
         }
 
@@ -431,25 +435,18 @@ function generarEstado3() {
   indiceDibujo = 0;
 
   espiralReversa = random([true, false]);
-  //radioMaximo = dist(0, 0, width / 2, height / 2);
-  //radioMaximo = 340
-  //radioMaximo = dist(0, 0,)
-  radioMaximo = width / 2 
 
-  // El ángulo máximo lo fijamos en función del radio máximo, para que no dé radio negativo
+  radioMaximo = width / 2 
   let anguloMaximo = radioMaximo / 5;
 
-  // Paso fijo para el ángulo
   let paso = 0.1;
   console.log(radioMaximo);
   if (espiralReversa) {
-    // Desde afuera hacia adentro: del ángulo máximo hacia 0
     for (let a = anguloMaximo; a >= 0; a -= paso) {
       
       angulosEspiral.push(a);
     }
   } else {
-    // Desde adentro hacia afuera: de 0 al ángulo máximo
     for (let a = 0; a <= anguloMaximo; a += paso) {
       angulosEspiral.push(a);
     }
@@ -458,21 +455,6 @@ function generarEstado3() {
   // Elegir un arreglo aleatorio de imágenes
   let arreglosDisponibles = [imagenes, imagenesOrbita, imagenesRojo];
   arregloElegido = random(arreglosDisponibles);
-}
-
-
-
-
-
-
-function printData() {
-
-  textSize(12);
-  fill(0);
-  let texto;
-
-  //texto = "Y la amplitud es de = " + amplitud;
-  text(texto, 20, 20);
 }
 
 class GestorSenial{
@@ -513,9 +495,6 @@ class GestorSenial{
 		this.histDerivada[ this.puntero ] = this.derivada;
 
 		this.anterior = this.filtrada;
-
-		//console.log( entrada_ + "  " + "    " + 
-		//	this.mapeada[this.puntero] + "     " + this.puntero );
 
 		this.puntero++;
 		if( this.puntero >= anchoGestor ){
