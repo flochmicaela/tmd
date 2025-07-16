@@ -25,7 +25,7 @@ let altoGestor = 100;
 let anchoGestor = 400;
 //Amortiguación de la amplitud del micrófono, es un valor entre cero (sin amortiguación) y uno (amortiguación total)
 
-let frec_min = 30;
+let frec_min = 80;
 let frec_max = 500;
 let pitch;
 let gestorPitch; //para la frecuencia
@@ -180,12 +180,12 @@ function draw() {
   if (haySonido) {
     let tono = gestorPitch.filtrada;
 
-    if (tono > 0.4) {
+    if (tono > 0.6) {
       if (estadoActual !== 2) {
         estadoActual = 2;
         generarEstado2();
       }
-    } else if (tono < 0.1) {
+    } else if (tono < 0.3) {
       if (estadoActual !== 3) {
         estadoActual = 3;
         generarEstado3();
