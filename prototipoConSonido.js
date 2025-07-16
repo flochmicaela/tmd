@@ -317,8 +317,8 @@ function generarEstado1() {
   trazos = [];
   opacidadFilas = [];
 
-  let columnaAncho = int(random(10, 51));
-  let totalFilas = int(random(10, 51));
+  let columnaAncho = int(random(40, 80));
+  let totalFilas = int(random(4, 25));
   let filaAltura = height / totalFilas;
 
   let arreglosDisponibles = [imagenes, imagenesRojo];
