@@ -16,12 +16,12 @@ let anguloGlobal = 0;
 let opacidadFilas = [];
 
 let radioEspiral = 40;
-let anguloEspiral; // Ángulo actual del dibujo, irá aumentando o disminuyendo
+let anguloEspiral; 
 let radioMaximo = 0;
 
 let anguloInicial = 0;
-let anguloFinal; // Límite del ángulo
-let incrementoAngulo; // + o - dependiendo de la dirección
+let anguloFinal;
+let incrementoAngulo; 
 
 //------Configuración.
 let amp_min = 0.015; //Umbral mínima de sonido que supera el ruido de fondo.
@@ -37,18 +37,13 @@ let frec_max = 500;
 let pitch;
 let gestorPitch; //para la frecuencia
 let audioContext;
-const pitchModel = 'https://cdn.jsdelivr.net/gh/ml5js/ml5-data-and-models/models/pitch-detection/crepe/'; // modelo entrenado para reconocer frecuencia
+const pitchModel = 'https://cdn.jsdelivr.net/gh/ml5js/ml5-data-and-models/models/pitch-detection/crepe/';
 
-let mic; //Micrófono.
+let mic; 
 let amplitud;
-let haySonido = false; //cómo esta el sonido en cada momento
-let antesHabiaSonido = false; // memoria del estado anterior del sonido
-let imprimir = true; //Eso es para ver la amplitud en el sketch.
-
-//GRAVE = ONDAS.
-//AGUDO = PEGARSE AL EXTREMO.
-//HAY SONIDO= DESAPARECEN FILAS.
-//SIN SONIDO = VUELVE AL INICIAL.
+let haySonido = false; 
+let antesHabiaSonido = false; 
+let imprimir = true; 
 
 //para elegir random de trazos
 let arregloElegido = [];  // Guardará el arreglo activo
@@ -57,8 +52,8 @@ let estadoAnterior = -1;  // Para detectar cambio de estado
 // para elegir random de direcciones
 let espiralReversa = false;
 let trazosEspiralGenerados = false;
-let indiceDibujo = 0;    // Para ir dibujando poco a poco el espiral
-let angulosEspiral = []; // Array con todos los ángulos precalculados (para dibujarlos en orden)
+let indiceDibujo = 0; 
+let angulosEspiral = [];
 
 // velocidad
 let velocidadEstado1 = 1; // valor por defecto
