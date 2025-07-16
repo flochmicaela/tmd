@@ -58,24 +58,24 @@ let velocidadEstado1 = 1; // valor por defecto
 
 function preload() {
   for (let i = 0; i < 4; i++) {
-    imagenes[i] = loadImage('data/trazo0' + i + '.png');
+    imagenes[i] = loadImage('data/trazo0' + i + '.PNG');
   }
   for (let i = 4; i < 26; i++) {
     let num = i < 10 ? '0' + i : i;
-    imagenesOrbita.push(loadImage('data/trazo0' + num + '.png'));
+    imagenesOrbita.push(loadImage('data/trazo0' + num + '.PNG'));
   }
   for (let i = 26; i < 30; i++) {
     let num = i < 10 ? '0' + i : i;
-    imagenesRojo.push(loadImage('data/trazo0' + num + '.png'));
+    imagenesRojo.push(loadImage('data/trazo0' + num + '.PNG'));
   }
   
   for (let i = 0; i < 4; i++) {
-    imagenesinv[i] = loadImage('data/trazo0' + i + 'inv.png');
+    imagenesinv[i] = loadImage('data/trazo0' + i + 'inv.PNG');
   }
   
   for (let i = 26; i < 30; i++) {
     let num = i < 10 ? '0' + i : i;
-    imagenesRojoinv.push(loadImage('data/trazo0' + num + 'inv.png'));
+    imagenesRojoinv.push(loadImage('data/trazo0' + num + 'inv.PNG'));
   }
 }
 
