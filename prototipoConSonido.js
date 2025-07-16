@@ -204,10 +204,6 @@ function draw() {
     }
   }
 
-  if (imprimir) {
-    printData();
-  }
-
   if (estadoActual === 1) {
     for (let i = 0; i < trazos.length; i++) {
       trazos[i].moverIzquierda();
@@ -419,10 +415,6 @@ function generarEstado2() {
 }
 
 
-
-
-
-
 function generarEstado3() {
   definirTamanoCanvas();  
   trazos = [];
@@ -455,8 +447,6 @@ function generarEstado3() {
 class GestorSenial{
 
 
-	//----------------------------------------
-
 	constructor( minimo_ , maximo_ ){
 
 		this.minimo = minimo_;
@@ -475,8 +465,6 @@ class GestorSenial{
 
 		this.f = 0.80;
 	}
-	//----------------------------------------
-
 
 	actualizar( entrada_ ){
 
